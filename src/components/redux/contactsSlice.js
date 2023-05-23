@@ -3,7 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
-  contacts: []
+  contacts: [],
 };
 
 const contactsSlice = createSlice({
@@ -25,20 +25,18 @@ const contactsSlice = createSlice({
       }
     },
     deleteContact (state, action) {
-      const index = state.findIndex(contact => contact.id === action.payload);
-      state.splice(index, 1);
+      state.contacts = state.contacts.filter(contact => contact.id !== action.payload);
     }
   },
 });
 
-export const getContacts = state => state.contacts.contacts;
-
 const persistConfig = {
-  key: 'contacts',
+  key: "contacts",
   storage,
   whitelist: ['contacts'],
 };
 
+export const getContacts = state => state.contacts.contacts;
 export const { addContact, deleteContact } = contactsSlice.actions;
 export const contactsReducer = persistReducer(
   persistConfig,

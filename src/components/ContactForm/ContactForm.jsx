@@ -1,6 +1,6 @@
 // import { Component } from 'react';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact, getContacts } from "../redux/contactsSlice";
@@ -28,8 +28,9 @@ export function ContactForm() {
     const contactIsAdded = contacts.some(contact => contact.name === name);
 
     if(contactIsAdded) {
-      alert(`${name} is already in contacts!`);
-      return;
+      return toast.error(`${name} is already in contacts!`, {
+        theme: 'colored',
+      });
     }
     
     dispatch(addContact({
@@ -74,12 +75,14 @@ export function ContactForm() {
             className={css.inputForm}
           />
         </label>
-
+      <ToastContainer position="top-right" autoClose={3000} limit={1} />
         <button type="submit" className={css.addBtn}>
           Add contact
         </button>
       </form>
-      {/* <ToastContainer position="top-right" autoClose={3000} limit={1} /> */}
+
     </div>
   );
 };
+
+
