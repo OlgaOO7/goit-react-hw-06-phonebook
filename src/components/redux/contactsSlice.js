@@ -14,7 +14,7 @@ const contactsSlice = createSlice({
       reducer(state, action) {
         state.contacts.push(action.payload);
       },
-      prepare({name, number}) {
+      prepare({ name, number }) {
         return {
           payload: {
             name,
@@ -24,11 +24,14 @@ const contactsSlice = createSlice({
         };
       }
     },
-    deleteContact (state, action) {
-      state.contacts = state.contacts.filter(contact => contact.id !== action.payload);
+    deleteContact(state, action) {
+      const index = state.contacts.findIndex(contact => contact.id === action.payload);
+      state.contacts.splice(index, 1);
     }
   },
 });
+
+
 
 const persistConfig = {
   key: "contacts",
