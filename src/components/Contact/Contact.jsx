@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { deleteContact } from "../redux/contactsSlice";
 import css from './Contact.module.css';
 
@@ -24,8 +24,8 @@ const dispatch = useDispatch();
   };
 
 
-Contact.propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-};
+// Contact.propTypes = {
+//     // id: PropTypes.string.isRequired,
+//     name: PropTypes.string.isRequired,
+//     number: PropTypes.string.isRequired,
+// };

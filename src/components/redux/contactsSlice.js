@@ -12,7 +12,7 @@ const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer(state, action) {
-        state.push(action.payload);
+        state.contacts.push(action.payload);
       },
       prepare({name, number}) {
         return {
@@ -31,7 +31,7 @@ const contactsSlice = createSlice({
   },
 });
 
-export const getContacts = state => state.contacts;
+export const getContacts = state => state.contacts.contacts;
 
 const persistConfig = {
   key: 'contacts',
